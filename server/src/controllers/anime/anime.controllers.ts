@@ -33,6 +33,34 @@ class AnimeController {
   }
 
   /**
+   * Get info on a specific anime title
+   * @param title
+   * @param req
+   * @param res
+   */
+  public async get_anime_info(
+    title: string,
+    req: Request,
+    res: Response
+  ): Promise<void> {
+    try {
+      if (title) {
+        const results = await axios.get(
+          `https://api.consumet.org/anime/gogoanime/info/${title}`
+        )
+        res.status(200).json(results.data)
+      } else {
+        throw new Error('Cannot find that anime')
+      }
+    } catch (err) {
+      res.status(404).json({
+        err: 'Cannot find that anime',
+      })
+      console.log(err)
+    }
+  }
+
+  /**
    * Get the top airing anime episodes from a remote server
    * @param page
    * @param req

@@ -10,8 +10,12 @@ anime_routes.get('/popular', (req: Request, res: Response) => {
 
 anime_routes.get('/search/:search', (req: Request, res: Response) => {
   const { search } = req.params
-  console.log(search)
   animeController.get_specific(search, req, res)
+})
+
+anime_routes.get('/anime/:title', (req: Request, res: Response) => {
+  const { title } = req.params
+  animeController.get_anime_info(title, req, res)
 })
 
 export default anime_routes
