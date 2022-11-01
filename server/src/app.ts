@@ -50,6 +50,11 @@ class App {
         msg: `Sugoi Anime API v${n}`,
       })
     })
+    this.express.use((req: Request, res: Response) => {
+      res.status(404).json({
+        err: "URL doesn't exist on the server",
+      })
+    })
   }
 }
 
