@@ -2,7 +2,7 @@
 
 Stream High Quality Anime — Without The Ads 
 -
-⚒️ Still in Alpha Stage Development
+⚒️ Still in Alpha Stage Development  
 For the mean time, you can run the API on your computer by using `npm run dev`
 
 STACK
