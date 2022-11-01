@@ -55,6 +55,11 @@ class App {
         err: "URL doesn't exist on the server",
       })
     })
+    this.express.use((req: Request, res: Response) => {
+      res.status(500).json({
+        err: 'ERR 500: Internal Server Error',
+      })
+    })
   }
 }
 
