@@ -5,6 +5,6 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: "`🤖 Dependabot:` "
+      prefix: "`🤖 Bot:` "
     ignore:
       - dependency-name: "nodemon"
