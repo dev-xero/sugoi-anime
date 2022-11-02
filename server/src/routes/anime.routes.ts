@@ -18,4 +18,9 @@ anime_routes.get('/anime/:title', (req: Request, res: Response) => {
   animeController.get_anime_info(title, req, res)
 })
 
+anime_routes.get('/watch/:title', (req: Request, res: Response) => {
+  const { title } = req.params
+  animeController.get_streaming_link(title, req, res)
+})
+
 export default anime_routes

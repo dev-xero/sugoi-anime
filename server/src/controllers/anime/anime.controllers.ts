@@ -81,6 +81,26 @@ class AnimeController {
       })
     }
   }
+
+  public async get_streaming_link(title: string, req: Request, res: Response): Promise<void> {
+    try {
+      if (title) {
+        const results = await axios.get(
+          `https://api.consumet.org/anime/gogoanime/watch/${title}`
+        )
+        res.status(200).json(
+          results.data
+        )
+      } else {
+        throw new Error('Cannot find that anime')
+      }
+    } catch (err) {
+      res.status(401).json({
+        err: err
+      })
+      console.log(err)
+    }
+  }
 }
 
 export default AnimeController
