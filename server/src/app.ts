@@ -3,6 +3,7 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import compression from 'compression'
+import mongoose from 'mongoose'
 import 'colors'
 import anime_routes from './routes/anime.routes'
 
@@ -12,6 +13,7 @@ class App {
   constructor(port: number) {
     this.express = express()
     this.port = port
+    this.initDBConnection()
     this.initMiddleware()
     this.initRoutes()
   }
@@ -25,6 +27,16 @@ class App {
   }
   private initRoutes(): void {
     this.express.use('/api/v1', anime_routes)
+  }
+  private async initDBConnection(): Promise<void> {
+    const { MONGO_URI } = process.env
+    try {
+      const conn = await mongoose.connect(MONGO_URI as string)
+      console.log(`Connected to MongoDB Database at: ${conn.connection.name}`.blue)
+    } catch (err) {
+      console.log(err)
+      process.exit(1)
+    }
   }
   public listen(): void {
     this.express.listen(this.port, () => {

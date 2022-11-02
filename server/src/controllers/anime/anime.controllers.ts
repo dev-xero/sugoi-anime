@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { Request, Response } from 'express'
+import AnimeInterface from './anime.interface'
 
-class AnimeController {
+class AnimeController implements AnimeInterface {
   /**
-   * Get a specific anime based on it's title
+   * Search for available anime
    * @param req
    * @param res
    */
@@ -33,7 +34,7 @@ class AnimeController {
   }
 
   /**
-   * Get info on a specific anime title
+   * Get info on a **specific anime title** e.g chainsaw-man
    * @param title
    * @param req
    * @param res
@@ -61,12 +62,12 @@ class AnimeController {
   }
 
   /**
-   * Get the top airing anime episodes from a remote server
+   * Get the **top airing anime episodes** from a remote server
    * @param page
    * @param req
    * @param res
    */
-  public async get_anime(page = 1, req: Request, res: Response): Promise<void> {
+  public async get_anime_top(page = 1, req: Request, res: Response): Promise<void> {
     try {
       const top_airing_anime = await axios.get(
         `https://api.consumet.org/anime/gogoanime/top-airing?page=${page}`
@@ -82,21 +83,31 @@ class AnimeController {
     }
   }
 
-  public async get_streaming_link(title: string, req: Request, res: Response): Promise<void> {
+  /**
+   * Get **streaming links** for a title e.g. blue-lock-episode-1  
+   * Default **CDN is GoGoCDN**
+   * @param title 
+   * @param req 
+   * @param res 
+   */
+
+  public async get_streaming_link(
+    title: string,
+    req: Request,
+    res: Response
+  ): Promise<void> {
     try {
       if (title) {
         const results = await axios.get(
           `https://api.consumet.org/anime/gogoanime/watch/${title}`
         )
-        res.status(200).json(
-          results.data
-        )
+        res.status(200).json(results.data)
       } else {
         throw new Error('Cannot find that anime')
       }
     } catch (err) {
       res.status(401).json({
-        err: err
+        err: err,
       })
       console.log(err)
     }
