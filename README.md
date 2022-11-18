@@ -3,9 +3,12 @@
 Stream High Quality Anime — Without The Ads 
 -
 ⚒️ Still in Alpha Stage Development  
-For the mean time, you can run the API on your computer by using 
+For the mean time, you can run the API on your computer by using these commands
 ```bash
-  npm run dev
+> git clone https://github.com/CodeNinja-tech/sugoi-anime.git
+> cd sugoi-anime/server
+> npm install
+> npm run dev
 ```
 
 STACK
