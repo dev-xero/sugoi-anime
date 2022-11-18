@@ -3,7 +3,10 @@
 Stream High Quality Anime — Without The Ads 
 -
 ⚒️ Still in Alpha Stage Development  
-For the mean time, you can run the API on your computer by using `npm run dev`
+For the mean time, you can run the API on your computer by using 
+```bash
+  npm run dev
+```
 
 STACK
 -
